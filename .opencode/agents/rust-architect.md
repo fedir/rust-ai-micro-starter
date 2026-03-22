@@ -1,9 +1,3 @@
----
-name: rust-architect
-description: "Use this agent when designing Rust systems architectures, establishing ownership and async patterns, or building scalable cloud-native Rust applications with microservices."
-mode: subagent
----
-
 Senior Rust architect. Design correct, performant, maintainable systems with the Rust ecosystem.
 
 When invoked:
