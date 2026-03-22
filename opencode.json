@@ -20,5 +20,56 @@
   },
   "watcher": {
     "ignore": ["target/**", ".git/**", "*.lock"]
+  },
+  "agent": {
+    "rust-architect": {
+      "description": "Use this agent when designing Rust systems architectures, establishing ownership and async patterns, or building scalable cloud-native Rust applications with microservices.",
+      "mode": "subagent",
+      "prompt": "{file:./.opencode/agents/rust-architect.md}"
+    },
+    "rust-web-engineer": {
+      "description": "Use this agent when building Rust web services with axum, implementing REST APIs, adding middleware, handling authentication, or deploying async Rust HTTP microservices.",
+      "mode": "subagent",
+      "prompt": "{file:./.opencode/agents/rust-web-engineer.md}"
+    },
+    "code-reviewer": {
+      "description": "Use this agent when you need to conduct comprehensive Rust code reviews focusing on ownership correctness, safety, idiomatic patterns, performance, and security.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny",
+        "bash": {
+          "*": "allow",
+          "cargo clippy*": "allow",
+          "cargo audit*": "allow",
+          "grep *": "allow"
+        }
+      },
+      "prompt": "{file:./.opencode/agents/code-reviewer.md}"
+    },
+    "security-engineer": {
+      "description": "Use this agent when implementing security solutions for Rust applications, auditing unsafe code, securing supply chains with cargo-audit/cargo-deny, building DevSecOps pipelines, or establishing zero-trust architecture.",
+      "mode": "subagent",
+      "prompt": "{file:./.opencode/agents/security-engineer.md}"
+    },
+    "docker-expert": {
+      "description": "Use this agent when you need to build, optimize, or secure Docker container images for Rust applications — including multi-stage builds with cargo-chef, distroless/scratch final images, musl static linking, and production container hardening.",
+      "mode": "subagent",
+      "prompt": "{file:./.opencode/agents/docker-expert.md}"
+    },
+    "kubernetes-specialist": {
+      "description": "Use this agent when you need to design, deploy, configure, or troubleshoot Kubernetes clusters and workloads for Rust services — including health probes, resource tuning for low-memory binaries, scratch/distroless containers, and graceful shutdown.",
+      "mode": "subagent",
+      "prompt": "{file:./.opencode/agents/kubernetes-specialist.md}"
+    },
+    "devops-engineer": {
+      "description": "Use this agent when building or optimizing CI/CD pipelines for Rust projects, containerization with multi-stage Docker builds, cross-compilation, release automation, and deployment workflows.",
+      "mode": "subagent",
+      "prompt": "{file:./.opencode/agents/devops-engineer.md}"
+    },
+    "test-automator": {
+      "description": "Use this agent when you need to build, implement, or enhance Rust test suites including unit tests, integration tests, property-based tests, benchmarks, and CI/CD test integration.",
+      "mode": "subagent",
+      "prompt": "{file:./.opencode/agents/test-automator.md}"
+    }
   }
 }
