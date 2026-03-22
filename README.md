@@ -39,9 +39,11 @@ Build a REST API for a task management app with PostgreSQL, JWT auth, and pagina
 Both Claude Code and OpenCode have their own agents, rules, and skills files. When both are present, each tool silently loads files it doesn't need — burning tokens on every prompt. `starter.sh` hides the other tool's files before launch and restores them on exit.
 
 ```bash
-./starter.sh              # interactive prompt: choose claude or opencode
-./starter.sh claude       # launch Claude Code directly
-./starter.sh opencode     # launch OpenCode directly
+./starter.sh                       # interactive prompt: choose claude or opencode
+./starter.sh claude                # launch Claude Code directly
+./starter.sh opencode              # launch OpenCode directly
+./starter.sh claude --resume       # pass extra args to the tool
+./starter.sh opencode run "..."    # pass extra args to the tool
 ```
 
 **What it does per tool:**
@@ -54,6 +56,26 @@ Both Claude Code and OpenCode have their own agents, rules, and skills files. Wh
 Skills are stored in `.claude/skills/` and moved to `.opencode/skills/` (OpenCode's native path) during an OpenCode session, then restored on exit. Restoration is guaranteed by a `trap` — it runs even on crash or Ctrl+C.
 
 **When to use it:** Recommended if you work with one tool consistently. If you switch between tools regularly, launching directly is fine — both tools are fully functional without the script.
+
+### Permanent specialization
+
+Once you've decided on a single tool, run `--keep-only` to permanently remove the other tool's files and self-destruct `starter.sh`:
+
+```bash
+./starter.sh --keep-only claude     # deletes all OpenCode files; keeps Claude config
+./starter.sh --keep-only opencode   # deletes all Claude files; moves skills to .opencode/skills/
+```
+
+**What gets removed:**
+
+| Command | Removed | Kept |
+|---------|---------|------|
+| `--keep-only claude` | `AGENTS.md`, `.opencode/agents/`, `opencode.json` | `CLAUDE.md`, `.claude/agents/`, `.claude/skills/` |
+| `--keep-only opencode` | `CLAUDE.md`, `.claude/agents/`, `.claude/skills/`* | `AGENTS.md`, `.opencode/agents/`, `.opencode/skills/` |
+
+*Skills are moved to `.opencode/skills/`, not deleted.
+
+After specialization `starter.sh` removes itself — the project is a clean single-tool workspace with no dual-config overhead.
 
 ## What's Included
 
