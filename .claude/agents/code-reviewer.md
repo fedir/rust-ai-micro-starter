@@ -1,6 +1,6 @@
 ---
 name: code-reviewer
-description: "Use this agent when you need to conduct comprehensive Rust code reviews focusing on ownership correctness, safety, idiomatic patterns, performance, and security."
+description: "Rust code review: ownership, unsafe, async correctness, idiomatic patterns, security."
 tools: Read, Write, Edit, Bash, Glob, Grep
 model: opus
 ---

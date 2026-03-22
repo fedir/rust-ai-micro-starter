@@ -1,6 +1,6 @@
 ---
 name: rust-architect
-description: "Use this agent when designing Rust systems architectures, establishing ownership and async patterns, or building scalable cloud-native Rust applications with microservices."
+description: "Rust workspace/crate design, async patterns, dep selection, error hierarchy, cloud-native microservices."
 tools: Read, Write, Edit, Bash, Glob, Grep
 model: sonnet
 ---

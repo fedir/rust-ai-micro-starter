@@ -1,6 +1,6 @@
 ---
 name: security-engineer
-description: "Use this agent when implementing security solutions for Rust applications, auditing unsafe code, securing supply chains with cargo-audit/cargo-deny, building DevSecOps pipelines, or establishing zero-trust architecture."
+description: "Rust security: unsafe audit, cargo-audit/deny, supply chain, DevSecOps, zero-trust."
 tools: Read, Write, Edit, Bash, Glob, Grep
 model: opus
 ---

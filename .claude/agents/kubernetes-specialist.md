@@ -1,6 +1,6 @@
 ---
 name: kubernetes-specialist
-description: "Use this agent when you need to design, deploy, configure, or troubleshoot Kubernetes clusters and workloads for Rust services — including health probes, resource tuning for low-memory binaries, scratch/distroless containers, and graceful shutdown."
+description: "Kubernetes for Rust: health probes, low-memory resource tuning, distroless, graceful shutdown."
 tools: Read, Write, Edit, Bash, Glob, Grep
 model: sonnet
 ---

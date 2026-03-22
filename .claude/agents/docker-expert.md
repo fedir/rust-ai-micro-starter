@@ -1,6 +1,6 @@
 ---
 name: docker-expert
-description: "Use this agent when you need to build, optimize, or secure Docker container images for Rust applications — including multi-stage builds with cargo-chef, distroless/scratch final images, musl static linking, and production container hardening."
+description: "Docker for Rust: cargo-chef multi-stage, distroless/scratch, musl static, <20MB images."
 tools: Read, Write, Edit, Bash, Glob, Grep
 model: sonnet
 ---

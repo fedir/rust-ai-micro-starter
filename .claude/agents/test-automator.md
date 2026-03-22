@@ -1,6 +1,6 @@
 ---
 name: test-automator
-description: "Use this agent when you need to build, implement, or enhance Rust test suites including unit tests, integration tests, property-based tests, benchmarks, and CI/CD test integration."
+description: "Rust test suites: unit, integration, proptest, criterion benchmarks, CI coverage."
 tools: Read, Write, Edit, Bash, Glob, Grep
 model: sonnet
 ---

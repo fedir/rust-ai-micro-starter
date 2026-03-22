@@ -1,6 +1,6 @@
 ---
 name: devops-engineer
-description: "Use this agent when building or optimizing CI/CD pipelines for Rust projects, containerization with multi-stage Docker builds, cross-compilation, release automation, and deployment workflows."
+description: "CI/CD pipelines, cross-compilation, release automation, deployment workflows for Rust."
 tools: Read, Write, Edit, Bash, Glob, Grep
 model: sonnet
 ---

@@ -1,6 +1,6 @@
 ---
 name: rust-web-engineer
-description: "Use this agent when building Rust web services with axum, implementing REST APIs, adding middleware, handling authentication, or deploying async Rust HTTP microservices."
+description: "axum REST APIs, sqlx, Tower middleware, JWT auth, async HTTP microservices."
 tools: Read, Write, Edit, Bash, Glob, Grep
 model: sonnet
 ---
