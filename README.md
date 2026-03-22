@@ -1,5 +1,7 @@
 # Rust AI Micro Starter
 
+[![CI](https://github.com/fedir/rust-ai-micro-starter/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/fedir/rust-ai-micro-starter/actions/workflows/ci.yml)
+
 A production-grade [OpenCode](https://opencode.ai) / [Claude Code](https://claude.ai/code) template for Rust microservices. Optimized for **maximum token efficiency** — agents and skills load only what the AI needs, when it needs it.
 
 Clone it, open your AI coding assistant, and describe what to build. Expert-level Rust guidance is already wired in.
