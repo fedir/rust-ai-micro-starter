@@ -5,17 +5,50 @@
 # of the chosen tool and restored on exit (even on crash / Ctrl+C).
 #
 # Usage:
-#   ./starter.sh                        # interactive prompt
-#   ./starter.sh claude                 # direct launch
-#   ./starter.sh opencode               # direct launch
-#   ./starter.sh opencode run "..."     # pass args to the tool
-#   ./starter.sh claude --resume        # pass args to the tool
+#   ./starter.sh                          # interactive prompt
+#   ./starter.sh claude                   # direct launch
+#   ./starter.sh opencode                 # direct launch
+#   ./starter.sh opencode run "..."       # pass args to the tool
+#   ./starter.sh claude --resume          # pass args to the tool
+#   ./starter.sh --keep-only claude       # permanently remove all OpenCode files, then remove this script
+#   ./starter.sh --keep-only opencode     # permanently remove all Claude files, then remove this script
 #
 # Optional — both tools work without this script.
 # Recommended when a single tool is used consistently, to prevent
 # duplicate context files from burning tokens on every invocation.
 
 set -euo pipefail
+
+# ── keep-only: permanent specialization ──────────────────────────────────────
+if [ "${1:-}" = "--keep-only" ]; then
+  KEEP="${2:-}"
+  if [ "$KEEP" != "claude" ] && [ "$KEEP" != "opencode" ]; then
+    echo "Usage: ./starter.sh --keep-only claude|opencode" >&2; exit 1
+  fi
+
+  echo "→ Specializing project for $KEEP (permanent, irreversible)..."
+  read -r -p "  Confirm? This deletes the other tool's files. [y/N] " confirm
+  [ "$confirm" = "y" ] || { echo "Aborted."; exit 0; }
+
+  if [ "$KEEP" = "claude" ]; then
+    rm -rf AGENTS.md .opencode/agents opencode.json
+    # skills stay in .claude/skills/ — their canonical home for Claude
+    echo "  removed  AGENTS.md  .opencode/agents/  opencode.json"
+  else
+    rm -rf CLAUDE.md .claude/agents
+    # move skills permanently to .opencode/skills/ (OpenCode native path)
+    [ -d .claude/skills ] && mv .claude/skills .opencode/skills
+    # remove .claude/ if now empty
+    rmdir .claude 2>/dev/null || true
+    echo "  removed  CLAUDE.md  .claude/agents/"
+    echo "  moved    .claude/skills/ → .opencode/skills/"
+  fi
+
+  rm -f "$0"
+  echo "  removed  starter.sh"
+  echo "✓ Project is now $KEEP-only. starter.sh self-destructed."
+  exit 0
+fi
 
 # ── pick tool ────────────────────────────────────────────────────────────────
 if   [ "${1:-}" = "claude" ];   then TOOL=claude;   shift
