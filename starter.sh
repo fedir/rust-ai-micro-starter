@@ -35,12 +35,10 @@ if [ "${1:-}" = "--keep-only" ]; then
     # skills stay in .claude/skills/ — their canonical home for Claude
     echo "  removed  AGENTS.md  .opencode/agents/  opencode.json"
   else
-    rm -rf CLAUDE.md .claude/agents
-    # move skills permanently to .opencode/skills/ (OpenCode native path)
+    # move skills out first, then remove entire .claude/ directory
     [ -d .claude/skills ] && mv .claude/skills .opencode/skills
-    # remove .claude/ if now empty
-    rmdir .claude 2>/dev/null || true
-    echo "  removed  CLAUDE.md  .claude/agents/"
+    rm -rf CLAUDE.md .claude
+    echo "  removed  CLAUDE.md  .claude/"
     echo "  moved    .claude/skills/ → .opencode/skills/"
   fi
 
