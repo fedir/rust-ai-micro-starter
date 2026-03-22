@@ -183,6 +183,10 @@ cargo nextest run
 cargo run
 ```
 
+## Credits
+
+Inspired by [piomin/claude-ai-spring-boot](https://github.com/piomin/claude-ai-spring-boot) by [@piomin](https://github.com/piomin). Completly rewrited.
+
 ## License
 
 MIT
