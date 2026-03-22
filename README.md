@@ -115,6 +115,7 @@ Agents and skills follow a **router + constraints** model, not a documentation d
 
 - **Agents**: ~30–55 lines each. Identity, constraints, stack, delegation rules only.
 - **Skills**: Loaded only when triggered. Deep knowledge lives in `references/` files — pulled only when that specific topic arises.
+- **Descriptions**: Telegraphic — no filler words, no "Use this agent when". Keywords only for routing signal.
 - **AGENTS.md / CLAUDE.md**: ~25 lines each. Hard rules the model won't assume on its own.
 - **starter.sh**: Removes the inactive tool's files entirely, so zero overlap in context.
 
