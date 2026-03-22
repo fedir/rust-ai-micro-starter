@@ -31,9 +31,9 @@ if [ "${1:-}" = "--keep-only" ]; then
   [ "$confirm" = "y" ] || { echo "Aborted."; exit 0; }
 
   if [ "$KEEP" = "claude" ]; then
-    rm -rf AGENTS.md .opencode/agents opencode.json
+    rm -rf AGENTS.md .opencode opencode.json
     # skills stay in .claude/skills/ — their canonical home for Claude
-    echo "  removed  AGENTS.md  .opencode/agents/  opencode.json"
+    echo "  removed  AGENTS.md  .opencode/  opencode.json"
   else
     # move skills out first, then remove entire .claude/ directory
     [ -d .claude/skills ] && mv .claude/skills .opencode/skills
