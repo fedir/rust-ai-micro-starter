@@ -1,6 +1,6 @@
 ---
 name: clean-code
-description: Clean Code principles (DRY, KISS, YAGNI), naming conventions, function design, and refactoring for Rust. Use when user says "clean this code", "refactor", "improve readability", or when reviewing code quality.
+description: DRY/KISS/YAGNI, naming, function design, refactoring. Trigger: clean/refactor/readability.
 ---
 
 # Clean Code Skill (Rust)

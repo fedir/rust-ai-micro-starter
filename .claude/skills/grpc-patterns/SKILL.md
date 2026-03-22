@@ -1,6 +1,6 @@
 ---
 name: grpc-patterns
-description: tonic gRPC server and client patterns for Rust — protobuf setup, unary and streaming RPCs, interceptors, health checks, and integration testing.
+description: tonic gRPC: protobuf setup, unary/streaming RPCs, interceptors, health checks, testing.
 ---
 
 # gRPC Patterns Skill

@@ -1,6 +1,6 @@
 ---
 name: rust-code-review
-description: Systematic Rust code review covering ownership, lifetimes, unsafe soundness, async correctness, idiomatic Rust 2024 patterns, performance, and security. Use when asked to review code or audit a PR.
+description: Rust code review: ownership, lifetimes, unsafe soundness, async, perf, security. PR audits.
 ---
 
 # Rust Code Review Skill

@@ -1,6 +1,6 @@
 ---
 name: sqlx-patterns
-description: sqlx patterns for Rust — compile-time checked queries, connection pools, transactions with FOR UPDATE SKIP LOCKED, dynamic QueryBuilder, offline mode, migrations, and error mapping to HTTP.
+description: sqlx: compile-time queries, pool, transactions, FOR UPDATE SKIP LOCKED, QueryBuilder, migrations.
 ---
 
 # sqlx Patterns Skill

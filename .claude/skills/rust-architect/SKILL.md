@@ -1,6 +1,6 @@
 ---
 name: rust-architect
-description: Rust system architecture workflows — Cargo workspace layout, crate boundaries, async design, dependency selection, error hierarchy, and production verification gates.
+description: Cargo workspace, crate boundaries, async design, dep selection, error hierarchy, build gates.
 ---
 
 # Rust Architect Skill
