@@ -1,6 +1,6 @@
 # Rust AI Micro Starter
 
-A production-grade [Claude Code](https://claude.ai/code) / [OpenCode](https://opencode.ai) template for Rust microservices. Optimized for **maximum token efficiency** — agents and skills load only what the AI needs, when it needs it.
+A production-grade [OpenCode](https://opencode.ai) / [Claude Code](https://claude.ai/code) template for Rust microservices. Optimized for **maximum token efficiency** — agents and skills load only what the AI needs, when it needs it.
 
 Clone it, open your AI coding assistant, and describe what to build. Expert-level Rust guidance is already wired in.
 
@@ -12,7 +12,7 @@ cd my-project
 rm -rf .git && git init
 sed -i '' 's/placeholder/my-project/g' Cargo.toml
 cp .env.example .env
-claude   # or: opencode
+opencode   # or: claude
 ```
 
 Then describe your service:
@@ -57,7 +57,7 @@ Agents and skills follow a **router + constraints** model, not a documentation d
 
 - **Agents**: ~30–55 lines each. Identity, constraints, stack, delegation rules only.
 - **Skills**: Loaded only when triggered. Deep knowledge lives in `references/` files — pulled only when that specific topic arises.
-- **CLAUDE.md**: 23 lines. Hard rules the model won't assume on its own.
+- **AGENTS.md**: 20 lines. Hard rules the model won't assume on its own.
 
 Result: ~200–400 tokens per invocation vs. 2,000–4,000 in naive setups.
 
@@ -78,17 +78,32 @@ Pre-configured to enforce modern Rust defaults:
 
 ```
 .
+├── .opencode/
+│   └── agents/               # 8 sub-agents (OpenCode native)
 ├── .claude/
-│   ├── agents/               # 8 specialized sub-agents
+│   ├── agents/               # 8 sub-agents (Claude Code compatible)
 │   └── skills/               # 10 on-demand skills + reference libraries
+├── AGENTS.md                 # Project rules for OpenCode
+├── CLAUDE.md                 # Project rules for Claude Code
+├── opencode.json             # OpenCode config: permissions, watcher
 ├── .github/workflows/ci.yml  # fmt → clippy → deny → audit → nextest → coverage → docker
 ├── Cargo.toml                # Edition 2024, optimized release profile, clippy pedantic
-├── CLAUDE.md                 # Minimal project rules (23 lines)
 ├── deny.toml                 # License policy + dependency bans
 ├── docker-compose.yml        # Postgres 17 + Redis 7 + app
 ├── Dockerfile                # cargo-chef + distroless, <20MB
 └── rustfmt.toml
 ```
+
+## Tool Compatibility
+
+| Feature | OpenCode | Claude Code |
+|---------|----------|-------------|
+| Rules | `AGENTS.md` | `CLAUDE.md` |
+| Agents | `.opencode/agents/` | `.claude/agents/` |
+| Skills | `.claude/skills/` ✅ | `.claude/skills/` ✅ |
+| Config | `opencode.json` | `.claude/settings.local.json` |
+
+Both tools read `.claude/skills/` natively — no duplication needed.
 
 ## CI Pipeline
 

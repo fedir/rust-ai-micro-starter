@@ -1,0 +1,24 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permission": {
+    "bash": {
+      "*": "ask",
+      "cargo *": "allow",
+      "rustup *": "allow",
+      "sqlx *": "allow",
+      "ls*": "allow",
+      "git status*": "allow",
+      "git log*": "allow",
+      "git diff*": "allow",
+      "git ls-tree*": "allow",
+      "docker compose*": "allow",
+      "docker ps*": "allow",
+      "docker build*": "allow",
+      "docker exec*": "allow",
+      "curl -s https://crates.io/api/v1/crates/*": "allow"
+    }
+  },
+  "watcher": {
+    "ignore": ["target/**", ".git/**", "*.lock"]
+  }
+}
