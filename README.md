@@ -12,7 +12,18 @@ cd my-project
 rm -rf .git && git init
 sed -i '' 's/placeholder/my-project/g' Cargo.toml
 cp .env.example .env
+```
+
+Then either launch directly:
+
+```bash
 opencode   # or: claude
+```
+
+Or use the starter script (recommended — see below):
+
+```bash
+./starter.sh
 ```
 
 Then describe your service:
@@ -20,6 +31,29 @@ Then describe your service:
 ```
 Build a REST API for a task management app with PostgreSQL, JWT auth, and pagination.
 ```
+
+## starter.sh
+
+`starter.sh` is an optional launcher that eliminates token waste when you use a single AI tool.
+
+Both Claude Code and OpenCode have their own agents, rules, and skills files. When both are present, each tool silently loads files it doesn't need — burning tokens on every prompt. `starter.sh` hides the other tool's files before launch and restores them on exit.
+
+```bash
+./starter.sh              # interactive prompt: choose claude or opencode
+./starter.sh claude       # launch Claude Code directly
+./starter.sh opencode     # launch OpenCode directly
+```
+
+**What it does per tool:**
+
+| Launch | Hidden for the session | Active |
+|--------|----------------------|--------|
+| `claude` | `AGENTS.md`, `.opencode/agents/` | `CLAUDE.md`, `.claude/agents/`, `.claude/skills/` |
+| `opencode` | `CLAUDE.md`, `.claude/agents/` | `AGENTS.md`, `.opencode/agents/`, `.opencode/skills/` |
+
+Skills are stored in `.claude/skills/` and moved to `.opencode/skills/` (OpenCode's native path) during an OpenCode session, then restored on exit. Restoration is guaranteed by a `trap` — it runs even on crash or Ctrl+C.
+
+**When to use it:** Recommended if you work with one tool consistently. If you switch between tools regularly, launching directly is fine — both tools are fully functional without the script.
 
 ## What's Included
 
@@ -57,7 +91,8 @@ Agents and skills follow a **router + constraints** model, not a documentation d
 
 - **Agents**: ~30–55 lines each. Identity, constraints, stack, delegation rules only.
 - **Skills**: Loaded only when triggered. Deep knowledge lives in `references/` files — pulled only when that specific topic arises.
-- **AGENTS.md**: 20 lines. Hard rules the model won't assume on its own.
+- **AGENTS.md / CLAUDE.md**: ~25 lines each. Hard rules the model won't assume on its own.
+- **starter.sh**: Removes the inactive tool's files entirely, so zero overlap in context.
 
 Result: ~200–400 tokens per invocation vs. 2,000–4,000 in naive setups.
 
@@ -81,11 +116,13 @@ Pre-configured to enforce modern Rust defaults:
 ├── .opencode/
 │   └── agents/               # 8 sub-agents (OpenCode native)
 ├── .claude/
-│   ├── agents/               # 8 sub-agents (Claude Code compatible)
+│   ├── agents/               # 8 sub-agents (Claude Code native)
 │   └── skills/               # 10 on-demand skills + reference libraries
+│                             # (moved to .opencode/skills/ during OpenCode sessions)
 ├── AGENTS.md                 # Project rules for OpenCode
 ├── CLAUDE.md                 # Project rules for Claude Code
 ├── opencode.json             # OpenCode config: permissions, watcher
+├── starter.sh                # Optional launcher — eliminates token overlap between tools
 ├── .github/workflows/ci.yml  # fmt → clippy → deny → audit → nextest → coverage → docker
 ├── Cargo.toml                # Edition 2024, optimized release profile, clippy pedantic
 ├── deny.toml                 # License policy + dependency bans
@@ -100,10 +137,8 @@ Pre-configured to enforce modern Rust defaults:
 |---------|----------|-------------|
 | Rules | `AGENTS.md` | `CLAUDE.md` |
 | Agents | `.opencode/agents/` | `.claude/agents/` |
-| Skills | `.claude/skills/` ✅ | `.claude/skills/` ✅ |
+| Skills (default) | `.opencode/skills/` | `.claude/skills/` |
 | Config | `opencode.json` | `.claude/settings.local.json` |
-
-Both tools read `.claude/skills/` natively — no duplication needed.
 
 ## CI Pipeline
 
