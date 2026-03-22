@@ -1,8 +1,12 @@
+## Startup
+Run `./starter.sh` before starting (optional). Recommended when using only one AI tool —
+hides the other tool's files to prevent duplicate context from burning tokens on every prompt.
+
 ## Workflow
 - Plan before acting on any task with 3+ steps or architectural decisions
 - Never mark done without proving it works (run tests, check logs)
 - After any user correction: update `tasks/lessons.md` with the pattern
-- Load skills from `.claude/skills/`; use subagents from `.opencode/agents/`
+- Load skills from `.opencode/skills/`; use subagents from `.opencode/agents/`
 
 ## Rust Standards
 - Edition 2024, MSRV 1.88+, latest stable crates
