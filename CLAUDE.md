@@ -1,6 +1,7 @@
 ## Startup
 Run `./starter.sh` before starting (optional). Recommended when using only one AI tool —
 hides the other tool's files to prevent duplicate context from burning tokens on every prompt.
+Agent and skill descriptions are telegraphic (no filler words) to minimize routing token cost.
 
 ## Workflow
 - Plan before acting on any task with 3+ steps or architectural decisions
